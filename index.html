@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Compteur d'argent</title>
+<title>Compteur HDMM</title>
 
 <style>
 body{
@@ -16,6 +16,11 @@ margin-top:150px;
 font-size:70px;
 margin-bottom:40px;
 color:#22c55e;
+transition: transform 0.2s;
+}
+
+.bounce{
+transform: scale(1.3);
 }
 
 button{
@@ -25,10 +30,13 @@ margin:10px;
 border:none;
 border-radius:10px;
 cursor:pointer;
+background:#22c55e;
+color:white;
 }
 
-.plus{background:#22c55e;}
-.reset{background:#ef4444;color:white;}
+.reset{
+background:#ef4444;
+}
 </style>
 
 </head>
@@ -39,9 +47,9 @@ cursor:pointer;
 
 <div id="argent">0 €</div>
 
-<button class="plus" onclick="ajouter(1)">+1€</button>
-<button class="plus" onclick="ajouter(10)">+10€</button>
-<button class="plus" onclick="ajouter(100)">+100€</button>
+<button onclick="ajouter(1)">+1€</button>
+<button onclick="ajouter(10)">+10€</button>
+<button onclick="ajouter(100)">+100€</button>
 
 <br>
 
@@ -50,19 +58,26 @@ cursor:pointer;
 <script>
 
 let argent = localStorage.getItem("argent") || 0;
+let compteur = document.getElementById("argent");
 
-document.getElementById("argent").innerText = argent + " €";
+compteur.innerText = argent + " €";
 
 function ajouter(valeur){
 argent = Number(argent) + valeur;
 localStorage.setItem("argent", argent);
-document.getElementById("argent").innerText = argent + " €";
+compteur.innerText = argent + " €";
+
+compteur.classList.add("bounce");
+
+setTimeout(() => {
+compteur.classList.remove("bounce");
+},200);
 }
 
 function reset(){
 argent = 0;
 localStorage.setItem("argent", argent);
-document.getElementById("argent").innerText = argent + " €";
+compteur.innerText = argent + " €";
 }
 
 </script>
