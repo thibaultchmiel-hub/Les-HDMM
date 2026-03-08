@@ -2,31 +2,69 @@
 <html>
 <head>
 <title>Compteur d'argent</title>
+
 <style>
 body{
-    background:black;
-    color:lime;
-    font-family:Arial;
-    text-align:center;
-    margin-top:200px;
-    font-size:50px;
+background:#0f172a;
+color:white;
+font-family:Arial;
+text-align:center;
+margin-top:150px;
 }
+
+#argent{
+font-size:70px;
+margin-bottom:40px;
+color:#22c55e;
+}
+
+button{
+font-size:20px;
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.plus{background:#22c55e;}
+.reset{background:#ef4444;color:white;}
 </style>
+
 </head>
 
 <body>
 
+<h1>💰 Compteur HDMM</h1>
+
 <div id="argent">0 €</div>
 
-<button onclick="ajouter()">+1€</button>
+<button class="plus" onclick="ajouter(1)">+1€</button>
+<button class="plus" onclick="ajouter(10)">+10€</button>
+<button class="plus" onclick="ajouter(100)">+100€</button>
+
+<br>
+
+<button class="reset" onclick="reset()">Reset</button>
 
 <script>
-let argent = 0;
 
-function ajouter(){
-    argent++;
-    document.getElementById("argent").innerText = argent + " €";
+let argent = localStorage.getItem("argent") || 0;
+
+document.getElementById("argent").innerText = argent + " €";
+
+function ajouter(valeur){
+argent = Number(argent) + valeur;
+localStorage.setItem("argent", argent);
+document.getElementById("argent").innerText = argent + " €";
 }
+
+function reset(){
+argent = 0;
+localStorage.setItem("argent", argent);
+document.getElementById("argent").innerText = argent + " €";
+}
+
 </script>
 
 </body>
