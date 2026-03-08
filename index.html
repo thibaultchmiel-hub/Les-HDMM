@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Compteur d'argent</title>
+<style>
+body{
+    background:black;
+    color:lime;
+    font-family:Arial;
+    text-align:center;
+    margin-top:200px;
+    font-size:50px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="argent">0 €</div>
+
+<button onclick="ajouter()">+1€</button>
+
+<script>
+let argent = 0;
+
+function ajouter(){
+    argent++;
+    document.getElementById("argent").innerText = argent + " €";
+}
+</script>
+
+</body>
+</html>
